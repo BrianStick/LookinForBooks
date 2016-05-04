@@ -12,5 +12,6 @@ namespace LookinForBooks.Models
         public string Author { get; set; }
         public string Publisher { get; set; }
         public int NumberofPages { get; set; }
-        public int ISBN { get; set; }
+        public int Isbn { get; set; }
+    }
 }
