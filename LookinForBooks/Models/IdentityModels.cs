@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -25,6 +27,8 @@ namespace LookinForBooks.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual ICollection<Book> BooksIOwn { get; set; } = new List<Book>();
     }
 
     public class ApplicationDbContext : IdentityDbContext<User>
@@ -38,5 +42,7 @@ namespace LookinForBooks.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<LookinForBooks.Models.Book> Books { get; set; }
     }
 }

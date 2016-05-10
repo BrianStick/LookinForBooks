@@ -196,21 +196,25 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BooksTempController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201605041855096_InitialCreate.cs" />
-    <Compile Include="Migrations\201605041855096_InitialCreate.Designer.cs">
-      <DependentUpon>201605041855096_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201605101821558_Initial.cs" />
+    <Compile Include="Migrations\201605101821558_Initial.Designer.cs">
+      <DependentUpon>201605101821558_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605101827038_ISBNString.cs" />
+    <Compile Include="Migrations\201605101827038_ISBNString.Designer.cs">
+      <DependentUpon>201605101827038_ISBNString.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Books.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -274,6 +278,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Books\Create.cshtml" />
+    <Content Include="Views\Books\Delete.cshtml" />
+    <Content Include="Views\Books\Details.cshtml" />
+    <Content Include="Views\Books\Edit.cshtml" />
+    <Content Include="Views\Books\Index.cshtml" />
+    <Content Include="Views\BooksTemp\Create.cshtml" />
+    <Content Include="Views\BooksTemp\Delete.cshtml" />
+    <Content Include="Views\BooksTemp\Details.cshtml" />
+    <Content Include="Views\BooksTemp\Edit.cshtml" />
+    <Content Include="Views\BooksTemp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,8 +301,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605041855096_InitialCreate.resx">
-      <DependentUpon>201605041855096_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605101821558_Initial.resx">
+      <DependentUpon>201605101821558_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605101827038_ISBNString.resx">
+      <DependentUpon>201605101827038_ISBNString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
