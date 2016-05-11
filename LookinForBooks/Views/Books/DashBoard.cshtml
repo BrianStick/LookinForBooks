@@ -1,0 +1,25 @@
+﻿@model LookinForBooks.Models.DashBoardVM
+
+@{
+    ViewBag.Title = "DashBoard";
+}
+
+<h2>My DashBoard</h2>
+
+<div>
+    <h4>Dashboard</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+
+@foreach (var book in Model.MyBooks)
+{
+    <div>@book.Title</div>
+}
+
+        Available Books
+@foreach (var book in Model.AvailableBook)
+{
+    <div>@book.Title</div>
+}

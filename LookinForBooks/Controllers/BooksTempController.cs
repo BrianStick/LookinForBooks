@@ -17,7 +17,8 @@ namespace LookinForBooks.Controllers
 
         // GET: BooksTemp
         public ActionResult Index()
-        {
+        {   //DashboardVm, List of books for current user
+
             return View(db.Books.ToList());
         }
 
@@ -41,6 +42,7 @@ namespace LookinForBooks.Controllers
         public ActionResult Create()
         {
             ViewBag.AllUsers = new SelectList(db.Users.Select(u => new { u.Id, u.UserName }).ToList(), "Id","UserName");
+
             return View();
         }
 

@@ -449,7 +449,7 @@ namespace LookinForBooks.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "Books");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
