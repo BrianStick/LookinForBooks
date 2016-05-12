@@ -17,7 +17,7 @@ namespace LookinForBooks.Controllers
 
         // GET: BooksTemp
         public ActionResult Index()
-        {   //DashboardVm, List of books for current user
+        {   
 
             return View(db.Books.ToList());
         }
