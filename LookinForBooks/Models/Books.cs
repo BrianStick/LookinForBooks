@@ -16,6 +16,18 @@ namespace LookinForBooks.Models
         public int NumberofPages { get; set; }
         public string Isbn { get; set; }
         public User Owner { get; set; }
+
+        public virtual ICollection<BookLoan> LoanedOut { get; set; } = new List<BookLoan>();
+
     }
 
+    public class BookLoan   
+    {
+        public int Id { get; set; }
+        public Book Book { get; set; }
+        public User CheckedOutBy { get; set; }
+        public DateTime CheckedOut { get; set; }
+        public DateTime? CheckedIn { get; set; }
+
+    }
 } 

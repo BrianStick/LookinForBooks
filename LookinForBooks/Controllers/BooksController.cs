@@ -26,6 +26,7 @@ namespace LookinForBooks.Controllers
             var model = new DashBoardVM();
             model.MyBooks = CurrentUser.BooksIOwn.Select(b => new BookVM()
             {
+                IsCheckedOut = db.BookLoans.Any(x=>x.Book.Id == b.Id && x.CheckedIn == null),
                 BookID = b.Id, 
                 Title = b.Title,
             }).ToList();
@@ -37,6 +38,12 @@ namespace LookinForBooks.Controllers
             }).ToList();
 
             return View(model);
+        }
+
+        public ActionResult Details(int id)
+        {
+            //load the book from the database and populate a BookDetailsVM? and pass it to the view
+            return View();
         }
     }
 }

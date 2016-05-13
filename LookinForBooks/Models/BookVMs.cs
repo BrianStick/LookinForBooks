@@ -9,6 +9,7 @@ namespace LookinForBooks.Models
     {
         public int BookID { get; set; }
         public string Title { get; set; }
+        public bool IsCheckedOut { get; set; }
     }
     public class DashBoardVM
     {

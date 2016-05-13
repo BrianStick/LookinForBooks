@@ -8,19 +8,24 @@
 
 <div>
     <h4>Dashboard</h4>
-    <hr/>
-    <dl class="dl-horizontal">
-    </dl>
+    <hr />
+    <dl class="dl-horizontal"></dl>
 </div>
 
 @foreach (var book in Model.MyBooks)
 {
-    <div> @book.Title</div>
-   
+    <div>
+        @book.IsCheckedOut 
+        @Html.ActionLink(book.Title, "Details", new {id = book.BookID})
+    </div>
+
 }
 
         Available Books
 @foreach (var book in Model.AvailableBook)
 {
-    <div>@book.Title</div>
+    <div>
+        @Html.ActionLink(book.Title, "Details", new { id = book.BookID }) |
+    </div>
 }
+<td></td>

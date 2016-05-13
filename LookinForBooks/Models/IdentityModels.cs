@@ -19,6 +19,7 @@ namespace LookinForBooks.Models
         public string State { get; set; }
         public string ZipCode { get; set; }
 
+        public virtual ICollection<BookLoan> BooksIveCheckedOut { get; set; } = new List<BookLoan>(); 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
@@ -44,5 +45,6 @@ namespace LookinForBooks.Models
         }
 
         public System.Data.Entity.DbSet<LookinForBooks.Models.Book> Books { get; set; }
+        public System.Data.Entity.DbSet<LookinForBooks.Models.BookLoan> BookLoans{ get; set; }
     }
 }

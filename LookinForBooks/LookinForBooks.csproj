@@ -211,6 +211,14 @@
     <Compile Include="Migrations\201605101827038_ISBNString.Designer.cs">
       <DependentUpon>201605101827038_ISBNString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605131902217_BookLoanMTOM.cs" />
+    <Compile Include="Migrations\201605131902217_BookLoanMTOM.Designer.cs">
+      <DependentUpon>201605131902217_BookLoanMTOM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605131917582_BookLoanCheckedOutBy.cs" />
+    <Compile Include="Migrations\201605131917582_BookLoanCheckedOutBy.Designer.cs">
+      <DependentUpon>201605131917582_BookLoanCheckedOutBy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Books.cs" />
@@ -309,6 +317,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605101827038_ISBNString.resx">
       <DependentUpon>201605101827038_ISBNString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605131902217_BookLoanMTOM.resx">
+      <DependentUpon>201605131902217_BookLoanMTOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605131917582_BookLoanCheckedOutBy.resx">
+      <DependentUpon>201605131917582_BookLoanCheckedOutBy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
