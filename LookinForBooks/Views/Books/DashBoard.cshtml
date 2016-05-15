@@ -1,4 +1,4 @@
-﻿@model LookinForBooks.Models.DashBoardVM
+﻿@model LookinForBooks.Models.DashBoardVm
 
 @{
     ViewBag.Title = "DashBoard";
@@ -13,10 +13,10 @@
 </div>
 
 @foreach (var book in Model.MyBooks)
-{
+{  
     <div>
         @book.IsCheckedOut 
-        @Html.ActionLink(book.Title, "Details", new {id = book.BookID})
+        @Html.ActionLink("IsChecheckedOut", "DashBoard", new {id = book.BookID})
     </div>
 
 }
@@ -25,7 +25,7 @@
 @foreach (var book in Model.AvailableBook)
 {
     <div>
-        @Html.ActionLink(book.Title, "Details", new { id = book.BookID }) |
+        @Html.ActionLink("Available Books", "DashBoard", new { id = book.BookID }) |
     </div>
 }
 <td></td>

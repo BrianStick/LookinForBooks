@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,17 +24,17 @@ namespace LookinForBooks.Controllers
         [HttpGet]
         public ActionResult DashBoard()
         {
-            var model = new DashBoardVM();
-            model.MyBooks = CurrentUser.BooksIOwn.Select(b => new BookVM()
+            var model = new DashBoardVm();
+            model.MyBooks = CurrentUser.BooksIOwn.Select(b => new BookVm()
             {
                 IsCheckedOut = db.BookLoans.Any(x=>x.Book.Id == b.Id && x.CheckedIn == null),
-                BookID = b.Id, 
+                BookId = b.Id, 
                 Title = b.Title,
             }).ToList();
 
-            model.AvailableBook = db.Books.Where(b => b.Owner.Id != CurrentUser.Id).Select(b => new BookVM()
+            model.AvailableBook = db.Books.Where(b => b.Owner.Id != CurrentUser.Id).Select(b => new BookVm()
             {
-                BookID = b.Id,
+                BookId = b.Id,
                 Title = b.Title,
             }).ToList();
 
@@ -43,7 +44,9 @@ namespace LookinForBooks.Controllers
         public ActionResult Details(int id)
         {
             //load the book from the database and populate a BookDetailsVM? and pass it to the view
-            return View();
+            var modelBd = new BookDetailsVm();
+            db.Books.Load();
+            return View(modelBd);
         }
     }
 }

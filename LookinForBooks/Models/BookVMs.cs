@@ -5,17 +5,27 @@ using System.Web;
 
 namespace LookinForBooks.Models
 {
-    public class BookVM
+    public class BookVm
     {
-        public int BookID { get; set; }
+        public int BookId { get; set; }
         public string Title { get; set; }
         public bool IsCheckedOut { get; set; }
     }
-    public class DashBoardVM
+    public class DashBoardVm
     {
-        public List<BookVM> MyBooks { get; set; } = new List<BookVM>();
-        public List<BookVM> LoandedOutBooks { get; set; } = new List<BookVM>();
-        public List<BookVM> AvailableBook { get; set; } = new List<BookVM>();
+        public List<BookVm> MyBooks { get; set; } = new List<BookVm>();
+        public List<BookVm> LoandedOutBooks { get; set; } = new List<BookVm>();
+        public List<BookVm> AvailableBook { get; set; } = new List<BookVm>();
          
+    }
+
+    public class BookDetailsVm
+
+    {
+        public int BookId { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string Summary { get; set; }
+
     }
 }
