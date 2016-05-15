@@ -16,7 +16,7 @@
 {  
     <div>
         @book.IsCheckedOut 
-        @Html.ActionLink("IsChecheckedOut", "DashBoard", new {id = book.BookID})
+        @Html.ActionLink("IsChecheckedOut", "DashBoard", new {id = book.BookId})
     </div>
 
 }
@@ -25,7 +25,7 @@
 @foreach (var book in Model.AvailableBook)
 {
     <div>
-        @Html.ActionLink("Available Books", "DashBoard", new { id = book.BookID }) |
+        @Html.ActionLink("Available Books", "DashBoard", new { id = book.BookId }) |
     </div>
 }
 <td></td>

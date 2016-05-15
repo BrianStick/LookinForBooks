@@ -11,48 +11,28 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.BookId)
+        </dt>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Author)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Publisher)
+            @Html.DisplayNameFor(model => model.Summary)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Publisher)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberofPages)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NumberofPages)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Isbn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Isbn)
-        </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink(model.Title, "Details", new { id = Model.Id }) |
+    @Html.ActionLink(Model.Title, "Details", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
