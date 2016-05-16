@@ -1,4 +1,5 @@
-﻿@model  IEnumerable<LookinForBooks.Models.BookVm>
+﻿@using LookinForBooks.Controllers
+@model  IEnumerable<LookinForBooks.Models.BookVm>
 
 Partial VIew!!!
 
@@ -51,7 +52,7 @@ Partial VIew!!!
                 
                 @Html.ActionLink("Details", "Details", new { id = book.BookId })
 
-                @Html.ActionLink("CheckOut", "CheckedkOut", new { id = book.BookId })|
+                @Html.ActionLink("Checkout", "Checkedout", new {bookid = book.BookId})
             </td>
         </tr>
     }

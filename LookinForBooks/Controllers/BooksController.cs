@@ -24,10 +24,6 @@ namespace LookinForBooks.Controllers
         ApplicationDbContext db = ApplicationDbContext.Create();
 
 
-         
-      
-
-
         [HttpGet]
         public ActionResult DashBoard()
         {
@@ -35,25 +31,19 @@ namespace LookinForBooks.Controllers
             model.MyBooks = CurrentUser.BooksIOwn.Select(b => new BookVm(b)).ToList();
 
             model.AvailableBooks =
-                db.Books.Include(x => x.Owner).Where(b => b.Owner.Id != CurrentUser.Id).ToList().Select(b => new BookVm(b)).ToList();
+                db.Books.Include(x => x.Owner)
+                    .Where(b => b.Owner.Id != CurrentUser.Id)
+                    .ToList()
+                    .Select(b => new BookVm(b))
+                    .ToList();
 
-            model.BooksIBorrowed = db.BookLoans.Include(x => x.Book.Owner).Where(bl => bl.CheckedOutBy.Id == CurrentUser.Id && bl.CheckedIn == null).ToList().Select(bl => new BookVm(bl.Book)).ToList();
+            model.BooksIBorrowed =
+                db.BookLoans.Include(x => x.Book.Owner)
+                    .Where(bl => bl.CheckedOutBy.Id == CurrentUser.Id && bl.CheckedIn == null)
+                    .ToList()
+                    .Select(bl => new BookVm(bl.Book))
+                    .ToList();
 
-            return View(model);
-        }
-
-
-        [HttpPost]
-        public ActionResult Checkout()
-        {
-            var model = new CheckedOutVM();
-           
-            {
-                db.Books.Find(model.BookId);
-                db.BookLoans.Add(new BookLoan());
-                db.SaveChanges();
-               
-            }
             return View(model);
         }
 
@@ -137,5 +127,36 @@ namespace LookinForBooks.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpGet]
+        public ActionResult Checkedout(int bookid)
+        {
+            var book = db.Books.Find(bookid);
+
+            var model = new CheckedOutVM()
+            {
+                BookId = book.Id,
+                Title  =   book.Title,
+                OwnerId =  book.Owner?.Id,
+                OwnerName = book.Owner == null ? "" : book.Owner.FirstName + " " + book.Owner.LastName,
+
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Checkedout(CheckedOutVM checkOut)
+        {
+            var book = db.Books.Find(checkOut.BookId);
+
+
+            var bl = new BookLoan() { Book = book, CheckedOut = DateTime.Now, CheckedOutBy = CurrentUser};
+
+            db.BookLoans.Add(bl);
+            db.SaveChanges();
+
+            return RedirectToAction("DashBoard");
+        }
+
     }
 }
