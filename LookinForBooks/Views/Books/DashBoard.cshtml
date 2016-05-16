@@ -10,17 +10,57 @@
 <h2>Dashboard</h2>
 
 <h3>My Books</h3>
-@Html.Partial("BookList", Model.MyBooks)
+
+<div class="list-group">
+    @foreach (var b in Model.MyBooks)
+    {
+        <a class="list-group-item @(b.IsCheckedOut ? "list-group-item-info": "")" hr href="@Url.Action("Details", new { id = b.BookId})">
+            @if (b.IsCheckedOut)
+            {
+                <div class="pull-right">
+                   Loaned Out To @b.CheckedOutBy
+                </div>
+            }
+            <h4>@b.Title</h4>
+
+        </a>
+    }
+
+</div>
 
 <h3>Loaned Out Books</h3>
-@Html.Partial("BookList", Model.BooksIBorrowed)
+
+<div class="list-group">
+    @foreach (var b in Model.BooksIBorrowed)
+            {
+        <a class="list-group-item" href="@Url.Action("Details", new { id = b.BookId})">
+            <h4>@b.Title</h4>
+            <h5>@b.OwnedBy</h5>
+        </a>
+    }
+
+</div>
+
+
 
 <h3>Available Books</h3>
-@Html.Partial("BookList", Model.AvailableBooks)
+
+<div class="list-group">
+    @foreach (var b in Model.AvailableBooks)
+            {
+        <div class="list-group-item" href="@Url.Action("Details", new { id = b.BookId})">
+            <a href="@Url.Action("Checkedout", new { BookId = b.BookId})" class="pull-right btn btn-success btn-sm">Check out</a>
+            <h4>@b.Title</h4>
+            <h5>@b.OwnedBy</h5>
+        </div>
+    }
+
+</div>
 
 
 
-   
+
+
 
 
 

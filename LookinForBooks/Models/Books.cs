@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,7 +16,10 @@ namespace LookinForBooks.Models
         public string Publisher { get; set; }
         public int NumberofPages { get; set; }
         public string Isbn { get; set; }
+
+        [Required]
         public User Owner { get; set; }
+
         public string Summary { get; set; }
 
         public virtual ICollection<BookLoan> LoanedOut { get; set; } = new List<BookLoan>();
@@ -25,8 +29,8 @@ namespace LookinForBooks.Models
     public class BookLoan   
     {
         public int Id { get; set; }
-        public Book Book { get; set; }
-        public User CheckedOutBy { get; set; }
+        public virtual Book Book { get; set; }
+        public virtual User CheckedOutBy { get; set; }
         public DateTime CheckedOut { get; set; }
         public DateTime? CheckedIn { get; set; }
 

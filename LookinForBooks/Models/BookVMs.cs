@@ -9,7 +9,7 @@ namespace LookinForBooks.Models
     {
         public BookVm()
         {
-            
+
         }
         public BookVm(Book book)
         {
@@ -19,6 +19,15 @@ namespace LookinForBooks.Models
             Author = book.Author;
             NumberofPages = book.NumberofPages;
             OwnedBy = book.Owner?.UserName;
+            var loan = book.LoanedOut.FirstOrDefault(x => x.CheckedIn == null);
+            if (loan != null)
+            {
+                IsCheckedOut = true;
+                CheckedOutBy = loan.CheckedOutBy?.UserName;
+                CheckedOutById = loan.CheckedOutBy?.Id;
+
+
+            }
 
         }
 
@@ -27,6 +36,8 @@ namespace LookinForBooks.Models
         public int BookId { get; set; }
         public string Title { get; set; }
         public bool IsCheckedOut { get; set; }
+        public string CheckedOutBy { get; set; }
+        public string CheckedOutById { get; set; }
         public string Author { get; set; }
         public string Publisher { get; set; }
         public int NumberofPages { get; set; }

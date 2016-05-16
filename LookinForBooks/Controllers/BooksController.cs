@@ -32,7 +32,7 @@ namespace LookinForBooks.Controllers
 
             model.AvailableBooks =
                 db.Books.Include(x => x.Owner)
-                    .Where(b => b.Owner.Id != CurrentUser.Id)
+                    .Where(b => b.Owner.Id != CurrentUser.Id  && b.LoanedOut.All(x => x.CheckedIn != null))
                     .ToList()
                     .Select(b => new BookVm(b))
                     .ToList();
