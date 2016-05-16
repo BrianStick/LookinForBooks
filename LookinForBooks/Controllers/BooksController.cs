@@ -32,21 +32,31 @@ namespace LookinForBooks.Controllers
         public ActionResult DashBoard()
         {
             var model = new DashBoardVm();
-            model.MyBooks = CurrentUser.BooksIOwn.Select(b => new BookVm()
-            {
-                IsCheckedOut = db.BookLoans.Any(x => x.Book.Id == b.Id && x.CheckedIn == null),
-                BookId = b.Id,
-                Title = b.Title,
-            }).ToList();
+            model.MyBooks = CurrentUser.BooksIOwn.Select(b => new BookVm(b)).ToList();
 
-            model.AvailableBook = db.Books.Where(b => b.Owner.Id != CurrentUser.Id).Select(b => new BookVm()
-            {
-                BookId = b.Id,
-                Title = b.Title,
-            }).ToList();
+            model.AvailableBooks =
+                db.Books.Include(x => x.Owner).Where(b => b.Owner.Id != CurrentUser.Id).ToList().Select(b => new BookVm(b)).ToList();
+
+            model.BooksIBorrowed = db.BookLoans.Include(x => x.Book.Owner).Where(bl => bl.CheckedOutBy.Id == CurrentUser.Id && bl.CheckedIn == null).ToList().Select(bl => new BookVm(bl.Book)).ToList();
 
             return View(model);
         }
+
+
+        [HttpPost]
+        public ActionResult Checkout()
+        {
+            var model = new CheckedOutVM();
+           
+            {
+                db.Books.Find(model.BookId);
+                db.BookLoans.Add(new BookLoan());
+                db.SaveChanges();
+               
+            }
+            return View(model);
+        }
+
 
         [HttpGet]
         public ActionResult Create()

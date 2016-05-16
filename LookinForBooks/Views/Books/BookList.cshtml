@@ -1,0 +1,59 @@
+﻿@model  IEnumerable<LookinForBooks.Models.BookVm>
+
+Partial VIew!!!
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publisher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberofPages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnedBy)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var book in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => book.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Publisher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.NumberofPages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.OwnedBy)
+            </td>
+            <td>
+                
+                @Html.ActionLink("Details", "Details", new { id = book.BookId })
+
+                @Html.ActionLink("CheckOut", "CheckedkOut", new { id = book.BookId })|
+            </td>
+        </tr>
+    }
+
+</table>

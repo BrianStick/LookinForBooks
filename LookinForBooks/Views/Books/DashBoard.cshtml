@@ -1,4 +1,5 @@
-﻿@model List<LookinForBooks.Models.Book>
+﻿@using LookinForBooks.Models
+@model LookinForBooks.Models.DashBoardVm
 
 
 @{
@@ -8,56 +9,14 @@
 
 <h2>Dashboard</h2>
 
+<h3>My Books</h3>
+@Html.Partial("BookList", Model.MyBooks)
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Author)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Publisher)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberofPages)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Isbn)
-        </th>
-        <th></th>
-    </tr>
+<h3>Loaned Out Books</h3>
+@Html.Partial("BookList", Model.BooksIBorrowed)
 
-    @foreach (var book in Model.MyBooks)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Publisher)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.NumberofPages)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Isbn)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = book.BookId })
-                @Html.ActionLink("Title", "Details", new { id = book.BookId })
-                @Html.ActionLink("Delete", "Delete", new { id = book.BookId })
-                @Html.ActionLink("Available Books", "DashBoard", new { id = book.BookId })
-                @Html.ActionLink("IsChecheckedOut", "DashBoard", new { id = book.BookId })|
-            </td>
-        </tr>
-    }
-
-</table>
+<h3>Available Books</h3>
+@Html.Partial("BookList", Model.AvailableBooks)
 
 
 
