@@ -1,31 +1,72 @@
-﻿@model LookinForBooks.Models.DashBoardVm
+﻿@model List<LookinForBooks.Models.Book>
+
 
 @{
-    ViewBag.Title = "DashBoard";
+    ViewBag.Title = "Dashboard";
 }
 
-<h2>My DashBoard</h2>
 
-<div>
-    <h4>Dashboard</h4>
-    <hr />
-    <dl class="dl-horizontal"></dl>
-</div>
+<h2>Dashboard</h2>
 
-@foreach (var book in Model.MyBooks)
-{  
-    <div>
-        @book.IsCheckedOut 
-        @Html.ActionLink("IsChecheckedOut", "DashBoard", new {id = book.BookId})
-    </div>
 
-}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publisher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberofPages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Isbn)
+        </th>
+        <th></th>
+    </tr>
 
-        Available Books
-@foreach (var book in Model.AvailableBook)
-{
-    <div>
-        @Html.ActionLink("Available Books", "DashBoard", new { id = book.BookId }) |
-    </div>
-}
-<td></td>
+    @foreach (var book in Model.MyBooks)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Publisher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.NumberofPages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Isbn)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = book.BookId })
+                @Html.ActionLink("Title", "Details", new { id = book.BookId })
+                @Html.ActionLink("Delete", "Delete", new { id = book.BookId })
+                @Html.ActionLink("Available Books", "DashBoard", new { id = book.BookId })
+                @Html.ActionLink("IsChecheckedOut", "DashBoard", new { id = book.BookId })|
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+   
+
+
+
+
+
+
+
+
