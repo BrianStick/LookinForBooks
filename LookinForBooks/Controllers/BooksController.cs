@@ -78,12 +78,19 @@ namespace LookinForBooks.Controllers
         }
 
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            //load the book from the database and populate a BookDetailsVM? and pass it to the view
-            var modelBd = new BookDetailsVm();
-            db.Books.Load();
-            return View(modelBd);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = db.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return View(book);
+
         }
 
         public ActionResult Delete(int? id)
