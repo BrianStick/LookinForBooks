@@ -185,10 +185,12 @@ namespace LookinForBooks.Controllers
         {
             var book = db.Books.Find(checkin.BookId);
 
+            var bookloans = db.BookLoans.Where(bl => bl.Book.Id == book.Id && bl.CheckedIn == null);
+            foreach (var bookloan in bookloans)
+            {
+                bookloan.CheckedIn = DateTime.Now;
+            }
 
-            var bk= new Book();
-
-            db.Books.Add(bk);
             db.SaveChanges();
 
             return RedirectToAction("DashBoard");

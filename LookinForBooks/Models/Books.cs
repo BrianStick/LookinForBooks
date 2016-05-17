@@ -35,4 +35,13 @@ namespace LookinForBooks.Models
         public DateTime? CheckedIn { get; set; }
 
     }
+
+    public class BookReturned
+    {
+        public int Id { get; set; }
+        public virtual Book Book { get; set; }
+        public virtual User CheckedOutBy { get; set; }
+        public DateTime CheckedIn { get; set; }
+        public User CheckedInBy { get; internal set; }
+    }
 } 
