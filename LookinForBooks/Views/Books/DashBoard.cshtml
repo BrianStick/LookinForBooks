@@ -18,7 +18,7 @@
             @if (b.IsCheckedOut)
             {
                 <div class="pull-right">
-                   Loaned Out To @b.CheckedOutBy
+                    Loaned Out To @b.CheckedOutBy
                 </div>
             }
             <h4>@b.Title</h4>
@@ -33,10 +33,11 @@
 <div class="list-group">
     @foreach (var b in Model.BooksIBorrowed)
             {
-        <a class="list-group-item" href="@Url.Action("Details", new { id = b.BookId})">
+        <div class="list-group-item" href="@Url.Action("Details", new { id = b.BookId})">
+            <a href="@Url.Action("Checkedin", new { BookId = b.BookId})" class="pull-right btn btn-success btn-sm">Check in</a>
             <h4>@b.Title</h4>
             <h5>@b.OwnedBy</h5>
-        </a>
+        </div>
     }
 
 </div>

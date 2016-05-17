@@ -253,6 +253,7 @@
     <Compile Include="Models\Books.cs" />
     <Compile Include="Models\BookVMs.cs" />
     <Compile Include="Models\CheckedOut.cs" />
+    <Compile Include="Models\CheckIn.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -330,6 +331,7 @@
     <Content Include="Views\BooksTemp\Index.cshtml" />
     <Content Include="Views\Books\DashBoard.cshtml" />
     <Content Include="Views\Books\CheckedOut.cshtml" />
+    <Content Include="Views\Books\CheckedIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

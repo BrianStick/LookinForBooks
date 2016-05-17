@@ -32,7 +32,7 @@ namespace LookinForBooks.Controllers
 
             model.AvailableBooks =
                 db.Books.Include(x => x.Owner)
-                    .Where(b => b.Owner.Id != CurrentUser.Id  && b.LoanedOut.All(x => x.CheckedIn != null))
+                    .Where(b => b.Owner.Id != CurrentUser.Id && b.LoanedOut.All(x => x.CheckedIn != null))
                     .ToList()
                     .Select(b => new BookVm(b))
                     .ToList();
@@ -136,8 +136,8 @@ namespace LookinForBooks.Controllers
             var model = new CheckedOutVM()
             {
                 BookId = book.Id,
-                Title  =   book.Title,
-                OwnerId =  book.Owner?.Id,
+                Title = book.Title,
+                OwnerId = book.Owner?.Id,
                 OwnerName = book.Owner == null ? "" : book.Owner.FirstName + " " + book.Owner.LastName,
 
             };
@@ -150,7 +150,7 @@ namespace LookinForBooks.Controllers
             var book = db.Books.Find(checkOut.BookId);
 
 
-            var bl = new BookLoan() { Book = book, CheckedOut = DateTime.Now, CheckedOutBy = CurrentUser};
+            var bl = new BookLoan() {Book = book, CheckedOut = DateTime.Now, CheckedOutBy = CurrentUser};
 
             db.BookLoans.Add(bl);
             db.SaveChanges();
@@ -158,5 +158,40 @@ namespace LookinForBooks.Controllers
             return RedirectToAction("DashBoard");
         }
 
+        public int BookId { get; set; }
+        public string Title { get; set; }
+        public string OwnerId { get; set; }
+        public string OwnerName { get; set; }
+
+        [HttpGet]
+        public ActionResult CheckedIn(int bookid)
+        {
+            var book = db.Books.Find(bookid);
+
+            var model = new CheckedInVM();
+            {
+                BookId = book.Id;
+                Title = book.Title;
+                OwnerId = book.Owner?.Id;
+                OwnerName = book.Owner == null ? "" : book.Owner.FirstName + " " + book.Owner.LastName;
+
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CheckedIn(CheckedInVM checkin)
+        {
+            var book = db.Books.Find(checkin.BookId);
+
+
+            var bk= new Book();
+
+            db.Books.Add(bk);
+            db.SaveChanges();
+
+            return RedirectToAction("DashBoard");
+        }
     }
 }
