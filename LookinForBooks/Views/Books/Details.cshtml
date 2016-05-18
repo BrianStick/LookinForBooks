@@ -11,23 +11,30 @@
     <h4>Books</h4>
     <hr />
     <dl class="dl-horizontal">
-    
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
 
 
         <dd>
-            @Html.DisplayFor(model => model.Author)
+            
+            <p>
+                @Html.DisplayFor(model => model.Title)
+            </p>
+
+
+            <p>
+                @Html.DisplayFor(model => model.Author)
+            </p>
+
+
+            <p>
+                @Html.DisplayNameFor(model => model.Summary)
+            </p>
+
+
+
+
+
+
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Summary)
-        </dt>
-
-
-
-
     </dl>
 </div>
 <p>

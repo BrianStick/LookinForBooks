@@ -61,20 +61,20 @@ namespace LookinForBooks.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Author,Publisher,NumberofPages,Isbn")] Book book,
-            string selectedOwnerId)
+        public ActionResult Create([Bind(Include = "Id,Title,Author,Publisher,NumberofPages,Isbn")] Book book, string selectedOwnerId)
         {
             if (ModelState.IsValid)
             {
+
                 var owner = db.Users.Find(selectedOwnerId);
 
                 book.Owner = owner;
                 db.Books.Add(book);
                 db.SaveChanges();
-                return RedirectToAction("DashBoard");
+                
             }
+            return RedirectToAction("DashBoard");
 
-            return View(book);
         }
 
 
